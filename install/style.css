@@ -1,0 +1,147 @@
+@font-face {
+	font-family: "Abel-Regular";
+	src: url('../media/font/Abel-Regular.ttf');
+}
+body {
+	font-family: "Abel-Regular";
+}
+div.install,
+div.formInstall h2,
+div.dbInstall h2,
+.event-success,
+.event-danger {
+	font-size: 2em;
+	text-align: center;
+}
+.title {
+    text-align: center;
+    margin: auto;
+    font-family: 'Abel-Regular';
+    font-size: 2em;
+}
+button.nextStepInstall,
+div.inputInstallFull
+{
+	width: 100%;
+}
+div.formInstall,
+div.dbInstall,
+div#event {
+	display: none;
+}
+div.inputInstall {
+	width: 45%;
+}
+.endButton {
+    text-align: center;
+}
+.loader {
+	display: none;
+	font-size: 90px;
+	text-indent: -9999em;
+	overflow: hidden;
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+	margin: 72px auto;
+	position: relative;
+	-webkit-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-animation: load6 1.7s infinite ease;
+	animation: load6 1.7s infinite ease;
+}
+@-webkit-keyframes load6 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		box-shadow: 0 -0.83em 0 -0.4em #808080, 0 -0.83em 0 -0.42em #808080, 0 -0.83em 0 -0.44em #808080, 0 -0.83em 0 -0.46em #808080, 0 -0.83em 0 -0.477em #808080;
+	}
+	5%,
+	95% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, 0 -0.83em 0 -0.42em #808080, 0 -0.83em 0 -0.44em #808080, 0 -0.83em 0 -0.46em #808080, 0 -0.83em 0 -0.477em #808080;
+	}
+	10%,
+	59% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, -0.087em -0.825em 0 -0.42em #808080, -0.173em -0.812em 0 -0.44em #808080, -0.256em -0.789em 0 -0.46em #808080, -0.297em -0.775em 0 -0.477em #808080;
+	}
+	20% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, -0.338em -0.758em 0 -0.42em #808080, -0.555em -0.617em 0 -0.44em #808080, -0.671em -0.488em 0 -0.46em #808080, -0.749em -0.34em 0 -0.477em #808080;
+	}
+	38% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, -0.377em -0.74em 0 -0.42em #808080, -0.645em -0.522em 0 -0.44em #808080, -0.775em -0.297em 0 -0.46em #808080, -0.82em -0.09em 0 -0.477em #808080;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+		box-shadow: 0 -0.83em 0 -0.4em #808080, 0 -0.83em 0 -0.42em #808080, 0 -0.83em 0 -0.44em #808080, 0 -0.83em 0 -0.46em #808080, 0 -0.83em 0 -0.477em #808080;
+	}
+}
+@keyframes load6 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		box-shadow: 0 -0.83em 0 -0.4em #808080, 0 -0.83em 0 -0.42em #808080, 0 -0.83em 0 -0.44em #808080, 0 -0.83em 0 -0.46em #808080, 0 -0.83em 0 -0.477em #808080;
+	}
+	5%,
+	95% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, 0 -0.83em 0 -0.42em #808080, 0 -0.83em 0 -0.44em #808080, 0 -0.83em 0 -0.46em #808080, 0 -0.83em 0 -0.477em #808080;
+	}
+	10%,
+	59% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, -0.087em -0.825em 0 -0.42em #808080, -0.173em -0.812em 0 -0.44em #808080, -0.256em -0.789em 0 -0.46em #808080, -0.297em -0.775em 0 -0.477em #808080;
+	}
+	20% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, -0.338em -0.758em 0 -0.42em #808080, -0.555em -0.617em 0 -0.44em #808080, -0.671em -0.488em 0 -0.46em #808080, -0.749em -0.34em 0 -0.477em #808080;
+	}
+	38% {
+		box-shadow: 0 -0.83em 0 -0.4em #808080, -0.377em -0.74em 0 -0.42em #808080, -0.645em -0.522em 0 -0.44em #808080, -0.775em -0.297em 0 -0.46em #808080, -0.82em -0.09em 0 -0.477em #808080;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+		box-shadow: 0 -0.83em 0 -0.4em #808080, 0 -0.83em 0 -0.42em #808080, 0 -0.83em 0 -0.44em #808080, 0 -0.83em 0 -0.46em #808080, 0 -0.83em 0 -0.477em #808080;
+	}
+}
+.collapsible-body {
+	width: 90%;
+	text-align: center;
+	margin: auto;
+}
+.input-field label,
+.input-field .prefix {
+	color: #808080;
+}
+.input-field input[type=text]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field input[type=email]:focus + label,
+.materialize-textarea:focus + label,
+textarea.materialize-textarea:focus:not([readonly]) + label,
+.input-field .prefix.active {
+	color: #000000;
+}
+textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #000000;
+	box-shadow: 0 1px 0 0 #000000;
+}
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+	border-bottom: 1px solid #000000;
+	box-shadow: 0 1px 0 0 #000000;
+}
+button:hover,
+.btn:hover,
+a:hover {
+	background-color: #D3D3D3;
+	color: #000000;
+	text-decoration: none;
+}
+button:focus,
+.btn,
+.btn:focus,
+a:focus {
+	background-color: #000000;
+	color: #FFFFFF;
+	text-decoration: none;
+}
