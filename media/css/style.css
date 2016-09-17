@@ -1,0 +1,151 @@
+@font-face {
+	font-family: 'Pacifico';
+	font-style: normal;
+	src: url('../font/Pacifico.ttf');
+}
+@font-face {
+	font-family: 'Abel-Regular';
+	font-style: normal;
+	src: url('../font/Abel-Regular.ttf');
+}
+html,body {
+	height:100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Abel-Regular', sans-serif;
+}
+.title {
+	text-align: center;
+	margin: auto;
+	font-family: 'Pacifico', cursive;
+	font-size: 2em;
+}
+.alert-success {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #008000;
+}
+.alert-failed {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #FF0000;
+}
+.alert-info {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #00CCFF;
+}
+.end_button {
+	text-align: center;
+}
+.collapsible-body {
+	width: 90%;
+	text-align: center;
+	margin: auto;
+}
+.input-field label,
+.input-field .prefix {
+	color: #808080;
+}
+.input-field input[type=text]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field input[type=email]:focus + label,
+.materialize-textarea:focus + label,
+textarea.materialize-textarea:focus:not([readonly]) + label,
+.input-field .prefix.active {
+	color: #000000;
+}
+textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #000000;
+	box-shadow: 0 1px 0 0 #000000;
+}
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+	border-bottom: 1px solid #000000;
+	box-shadow: 0 1px 0 0 #000000;
+}
+button:hover,
+.btn:hover,
+a:hover {
+	background-color: #D3D3D3;
+	color: #000000;
+	text-decoration: none;
+}
+button:focus,
+.btn,
+.btn:focus,
+a:focus {
+	background-color: #000000;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#div_error {
+	text-align: center;
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+#display_user_pass {
+	cursor: pointer;
+}
+label,
+.select-wrapper+label {
+	font-size: 1em;
+}
+.picker__date-display,
+.picker__weekday-display,
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected {
+	background-color: #000000;
+}
+#add_book_error,
+#resume_error,
+#add_customer_error,
+#edit_book_error,
+#edit_customer_error,
+#edit_login_error,
+#edit_password_error {
+	text-align: center;
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 1.1em;
+}
+#toast-container {
+	width: 100%;
+}
+#resume_count {
+	float: right;
+	font-weight: bold;
+}
+.dropdown-button,
+.all_kind,
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating),
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+.dropdown-content li,
+.kind {
+	margin: auto;
+	text-align: center;
+	font-size: 1.2em;
+	cursor: pointer;
+}
+.type span,
+.author span,
+.editor span,
+.year span {
+	cursor: pointer;
+}
+#hidden_type,
+#hidden_kind,
+#hidden_book,
+#hidden_customer {
+	display: none;
+	visibility: hidden;
+}
