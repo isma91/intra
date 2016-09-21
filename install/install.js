@@ -103,63 +103,53 @@ $(document).ready(function(){
 			var dataError;
 			dataError = false;
 			if (data.substr(0, 5) === "Error") {
-				$("div#event").css("display", "none");
-				$("div#event").html('<div class="alert alert-danger event-danger">' + data + '</div>');
-				$("div#event").fadeIn('slow');
+				Materialize.toast('<p class="alert-failed">' + data + '<p>', 3000, 'rounded alert-failed');
 			} else {
-				$("div#event").css("display", "none");
-				$("div#event").html('<div class="alert alert-success event-success">' + data + '</div>');
-				$("div#event").fadeIn('slow');
+				Materialize.toast('<p class="alert-success">' + data + '<p>', 3000, 'rounded alert-success');
 			}
 		});
 	});
-	$("button#checkDatabase").click(function() {
+	$("button#checkDb").click(function() {
 		checkDbHost = $("input#host").val();
 		checkDbUsername = $("input#username").val();
 		checkDbPassword = $("input#dbPassword").val();
-		checkDbName = $("input#dbName").val();
+		checkDbName = $("input#dbname").val();
 		$.post( "dbTest.php", {host:  checkDbHost, username: checkDbUsername, password: checkDbPassword, dbname: checkDbName}, function (data) {
 			if (data.substr(0, 5) === "Error") {
-				$("div#event").css("display", "none");
-				$("div#event").html('<div class="alert alert-danger event-danger">' + data + '</div>');
-				$("div#event").fadeIn('slow');
-				$("button#finish_install").attr('disabled', "true");
+				Materialize.toast('<p class="alert-failed">' + data + '<p>', 3000, 'rounded alert-failed');
 			} else {
-				$("div#event").css("display", "none");
-				$("div#event").html('<div class="alert alert-success event-success">' + data + '</div>');
-				$("div#event").fadeIn('slow');
-				$("button#finish_install").removeAttr('disabled');
+				Materialize.toast('<p class="alert-success">' + data + '<p>', 3000, 'rounded alert-success');
+				$("button#finishInstall").removeAttr('disabled');
 			}
 		});
 	});
 	$("input").bind('change paste keyup', function() {
-		if ($("input#last_name").val().length > 0 && $("input#first_name").val().length > 0 && $("input#pseudo").val().length > 0 && passwordGood === true && confirmPasswordGood === true && emailGood === true) {
+		if ($("input#lastname").val().length > 0 && $("input#firstname").val().length > 0 && $("input#nickname").val().length > 0 && passwordGood === true && confirmPasswordGood === true && emailGood === true) {
 			$("button.nextStepInstall").removeAttr('disabled');
 		} else {
 			$("button.nextStepInstall").attr('disabled', "true");
 		}
 		if ($("input#host").val() !== checkDbHost || $("input#username").val() !== checkDbUsername || $("input#dbPassword").val() !== checkDbPassword || $("input#dbName").val() !== checkDbName) {
-			$("button#finish_install").attr('disabled', "true");
+			$("button#finishInstall").attr('disabled', "true");
 		}
 	});
-	$("button#finish_install").click(function() {
+	$("button#finishInstall").click(function() {
 		$.post( "create_config.php", {host:  checkDbHost, username: checkDbUsername, password: checkDbPassword, dbname: checkDbName}, function (data) {
 			if (data !== 0) {
-				$("div#event").html('<div class="alert alert-success event-success">Config file created !!</div>');
-				$("div#event").fadeIn('slow');
+				Materialize.toast('<p class="alert-success">Config file created !!<p>', 3000, 'rounded alert-success');
 			} else {
-				$("div#event").html('<div class="alert alert-danger event-danger">Error when creating the config file !!</div>');
-				$("div#event").fadeIn('slow');
+				Materialize.toast('<p class="alert-failed">Error when creating the config file !!<p>', 3000, 'rounded alert-failed');
 			}
 		});
-		$.post( "install_import_db.php", {host:  $("input#host").val(), username: $("input#username").val(), password: $("input#dbPassword").val(), dbname: $("input#dbName").val(), blogger_name: $("input#pseudo").val(), blogger_firstname: $("input#first_name").val(), blogger_lastname: $("input#last_name").val(), blogger_email: $("input#email").val(), blogger_password: $("input#password").val()}, function (data) {
-			$("div.form_install").css("display", "none");
-			$("div.db_install").css("display", "none");
+		//@TODO: change key name for the intra
+		$.post( "install_import_db.php", {host:  $("input#host").val(), username: $("input#username").val(), password: $("input#dbPassword").val(), dbname: $("input#dbname").val(), blogger_name: $("input#pseudo").val(), blogger_firstname: $("input#first_name").val(), blogger_lastname: $("input#last_name").val(), blogger_email: $("input#email").val(), blogger_password: $("input#password").val()}, function (data) {
+			$("div.formInstall").css("display", "none");
+			$("div.dbInstall").css("display", "none");
 			$("div.loader").css("display", "inline");
 			$("div.install").html("Completing the Installation...");
 			if (data === "true") {
-				$("div#event").css("display", "none");
 				$("div.loader").css("display", "none");
+				Materialize.toast('<p class="alert-failed">' + data + '<p>', 3000, 'rounded alert-failed');
 				$("div#event").html('<div class="alert alert-success event-success">Your intra is ready to go !!</div>');
 				$("div#event").fadeIn('slow');
 				$("div.install").html("Done !!");
