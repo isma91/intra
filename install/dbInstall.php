@@ -13,7 +13,7 @@
 $duplicateDb = false;
 try {
 	$db = new PDO("mysql:host=" . $_POST["host"] . ";", $_POST["username"], $_POST["password"]);
-	$dbRequest = $bdd->prepare("SHOW DATABASES;");
+	$dbRequest = $db->prepare("SHOW DATABASES;");
 	$dbRequest->execute();
 	$dbData = $dbRequest->fetchAll();
 	foreach ($dbData as $value) {
@@ -25,7 +25,7 @@ try {
 	if ($duplicateDb === true) {
 		echo "Error !! The database '" . $_POST["dbname"] . "' already exist !!\n";
 	} else {
-		$bdd->exec("CREATE DATABASE IF NOT EXISTS `" . $_POST["dbname"] . "`;");
+		$db->exec("CREATE DATABASE IF NOT EXISTS `" . $_POST["dbname"] . "`;");
 		echo "Database '" . $_POST["dbname"] . "' successfully created !!\n";
 	}
 } catch (PDOException $exception) {
