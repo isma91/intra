@@ -101,8 +101,6 @@ $(document).ready(function(){
 		dbName = $("input#dbname").val();
 		$.post( "dbInstall.php", {host: host, username: username, password: dbPassword, dbname: dbName}, function (data) {
 			var dataError;
-			console.log(data);
-			return;
 			dataError = false;
 			if (data.substr(0, 5) === "Error") {
 				Materialize.toast('<p class="alert-failed">' + data + '<p>', 3000, 'rounded alert-failed');
