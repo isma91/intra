@@ -144,3 +144,26 @@ a:focus {
 	color: #FFFFFF;
 	text-decoration: none;
 }
+.alert-success {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #008000;
+}
+.alert-failed {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #FF0000;
+}
+.alert-info {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #00CCFF;
+}
+#toast-container {
+	width: 100%;
+	right: 0%;
+	max-width: 100%;
+}
