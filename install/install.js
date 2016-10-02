@@ -1,6 +1,13 @@
-/*jslint browser: true, node : true*/
-/*jslint devel : true*/
-/*global $, document, this*/
+/**
+ * Install.js
+ *
+ * Help the user to complete the intra installation
+ *
+ * ES5, JQuery
+ *
+ * @author   isma91 <ismaydogmus@gmail.com>
+ * @license  https://opensource.org/licenses/mit-license.php MIT License
+ */
 $(document).ready(function(){
 	var passwordGood, confirmPasswordGood, emailGood, nextStepInstallCliqued, nextStepInstallCliquedCount, checkDbHost, checkDbUsername, checkDbPassword, checkDbName;
 	passwordGood = false;
@@ -8,15 +15,18 @@ $(document).ready(function(){
 	emailGood = false;
 	nextStepInstallCliqued = false;
 	nextStepInstallCliquedCount = 0;
+	function changeLabel(selector, text, color) {
+		$(selector).html(" " + text).css("color", color);
+	}
 	function changeConfirmPassword () {
 		if ($("input#confirmPassword").val() !== $("input#password").val()) {
 			confirmPasswordGood = false;
-			$(this).css({"border-color":"#FF0000"});
-			$("span#spanLabelConfirmPassword").html(" not the same password").css("color", "#FF0000");
+			$("input#confirmPassword").css({"border-color":"#FF0000"});
+			changeLabel("span#spanLabelConfirmPassword", "not the same password", "#FF0000");
 		} else {
 			confirmPasswordGood = true;
-			$(this).css({"border-color":"#007B00"});
-			$("span#spanLabelConfirmPassword").html(" same password").css("color", "#007B00");
+			$("input#confirmPassword").css({"border-color":"#007B00"});
+			changeLabel("span#spanLabelConfirmPassword", "same password", "#007B00");
 		}
 	}
 	$("button.toggleInstall").click(function(){
@@ -29,9 +39,9 @@ $(document).ready(function(){
 		nextStepInstallCliqued = true;
 		if (nextStepInstallCliqued === true) {
 			if (nextStepInstallCliquedCount % 2 === 0) {
-				$("button.nextStepInstall").html("Hide Admin Profile");
+				$(this).html("Hide Admin Profile");
 			} else {
-				$("button.nextStepInstall").html("Display Admin Profile");
+				$(this).html("Display Admin Profile");
 			}
 		}
 		$("div.divFormInstall").fadeToggle("slow");
@@ -56,30 +66,30 @@ $(document).ready(function(){
 		}
 		switch (score) {
 			case 0:
-			passwordGood = false;
-			$("span#spanLabelPassword").html(" at least 5 characters").css("color", "#808080");
-			$(this).css({"border-color":"#808080"});
-			break;
+				passwordGood = false;
+				changeLabel("span#spanLabelPassword", "at least 5 characters", "#808080");
+				$(this).css({"border-color":"#808080"});
+				break;
 			case 1:
-			passwordGood = true;
-			$("span#spanLabelPassword").html(" weak").css("color", "#FF0000");
-			$(this).css({"border-color":"#FF0000"});
-			break;
+				passwordGood = true;
+				changeLabel("span#spanLabelPassword", "weak", "#FF0000");
+				$(this).css({"border-color":"#FF0000"});
+				break;
 			case 2:
-			passwordGood = true;
-			$("span#spanLabelPassword").html(" weak").css("color", "#FF0000");
-			$(this).css({"border-color":"#FF0000"});
-			break;
+				passwordGood = true;
+				changeLabel("span#spanLabelPassword", "weak", "#FF0000");
+				$(this).css({"border-color":"#FF0000"});
+				break;
 			case 3:
-			passwordGood = true;
-			$("span#spanLabelPassword").html(" medium").css("color", "#FFA500");
-			$(this).css({"border-color":"#FFA500"});
-			break;
+				passwordGood = true;
+				changeLabel("span#spanLabelPassword", "medium", "#FFA500");
+				$(this).css({"border-color":"#FFA500"});
+				break;
 			case 4:
-			passwordGood = true;
-			$("span#spanLabelPassword").html(" strong").css("color", "#007B00");
-			$(this).css({"border-color":"#007B00"});
-			break;
+				passwordGood = true;
+				changeLabel("span#spanLabelPassword", "strong", "#007B00");
+				$(this).css({"border-color":"#007B00"});
+				break;
 		}
 	});
 	$("input#confirmPassword").bind('change paste keyup', function() {
@@ -88,8 +98,8 @@ $(document).ready(function(){
 	$("input#email").bind('change paste keyup', function() {
 		var regexEmail;
 		regexEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-    	if (regexEmail.test($(this).val())) {
-    		emailGood = true;
+		if (regexEmail.test($(this).val())) {
+			emailGood = true;
 			$(this).css({"border-color":"#007B00"});
 			$("span#spanLabelEmail").html(" valid email").css("color", "#007B00");
 		} else {
@@ -103,7 +113,7 @@ $(document).ready(function(){
 		host = $("input#host").val();
 		username = $("input#username").val();
 		dbPassword = $("input#dbPassword").val();
-		dbName = $("input#dbname").val();
+		dbName = $.trim($("input#dbname").val());
 		$.post( "dbInstall.php", {host: host, username: username, password: dbPassword, dbname: dbName}, function (data) {
 			var dataError;
 			dataError = false;
@@ -118,10 +128,11 @@ $(document).ready(function(){
 		checkDbHost = $("input#host").val();
 		checkDbUsername = $("input#username").val();
 		checkDbPassword = $("input#dbPassword").val();
-		checkDbName = $("input#dbname").val();
+		checkDbName = $.trim($("input#dbname").val());
 		$.post( "dbTest.php", {host:  checkDbHost, username: checkDbUsername, password: checkDbPassword, dbname: checkDbName}, function (data) {
 			if (data.substr(0, 5) === "Error") {
 				Materialize.toast('<p class="alert-failed">' + data + '<p>', 3000, 'rounded alert-failed');
+				$("button#finishInstall").attr('disabled', "true");
 			} else {
 				Materialize.toast('<p class="alert-success">' + data + '<p>', 3000, 'rounded alert-success');
 				$("button#finishInstall").removeAttr('disabled');
@@ -139,31 +150,26 @@ $(document).ready(function(){
 		}
 	});
 	$("button#finishInstall").click(function() {
-		$.post( "create_config.php", {host:  checkDbHost, username: checkDbUsername, password: checkDbPassword, dbname: checkDbName}, function (data) {
+		$.post("configCreate.php", {host:  checkDbHost, username: checkDbUsername, password: checkDbPassword, dbname: checkDbName}, function (data) {
 			if (data !== 0) {
 				Materialize.toast('<p class="alert-success">Config file created !!<p>', 3000, 'rounded alert-success');
 			} else {
 				Materialize.toast('<p class="alert-failed">Error when creating the config file !!<p>', 3000, 'rounded alert-failed');
 			}
 		});
-		//@TODO: change key name for the intra
-		$.post( "install_import_db.php", {host:  $("input#host").val(), username: $("input#username").val(), password: $("input#dbPassword").val(), dbname: $("input#dbname").val(), blogger_name: $("input#pseudo").val(), blogger_firstname: $("input#first_name").val(), blogger_lastname: $("input#last_name").val(), blogger_email: $("input#email").val(), blogger_password: $("input#password").val()}, function (data) {
+		$.post( "dbTableInstall.php", {host:  $("input#host").val(), username: $("input#username").val(), dbPassword: $("input#dbPassword").val(), dbname: $("input#dbname").val(), nickname: $("input#nickname").val(), firstname: $("input#firstname").val(), lastname: $("input#lastname").val(), email: $("input#email").val(), password: $("input#password").val()}, function (data) {
 			$("div.formInstall").css("display", "none");
 			$("div.dbInstall").css("display", "none");
 			$("div.loader").css("display", "inline");
 			$("div.install").html("Completing the Installation...");
 			if (data === "true") {
 				$("div.loader").css("display", "none");
-				Materialize.toast('<p class="alert-failed">' + data + '<p>', 3000, 'rounded alert-failed');
-				$("div#event").html('<div class="alert alert-success event-success">Your intra is ready to go !!</div>');
-				$("div#event").fadeIn('slow');
+				Materialize.toast('<p class="alert-success">Your intra is ready to go !!<p>', 3000, 'rounded alert-success');
 				$("div.install").html("Done !!");
 				document.location.href = './../';
 			} else {
 				$("div.loader").css("display", "none");
-				$("div#event").css("display", "none");
-				$("div#event").html('<div class="alert alert-danger event-danger">All tables have not been created in the database !! Try Again</div>');
-				$("div#event").fadeIn('slow');
+				Materialize.toast('<p class="alert-failed">All tables have not been created in the database !! Try Again !!<p>', 3000, 'rounded alert-failed');
 				$("div.install").html("Restart the installation and check if the 'install' folder is in the root of the project");
 			}
 		});
