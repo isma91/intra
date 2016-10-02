@@ -21,7 +21,8 @@ $(document).ready(function(){
 	}
 	$("button.toggleInstall").click(function(){
 		$("div.formInstall").fadeToggle("slow");
-		$("button.toggleInstall").remove();
+		$(this).prev().remove();
+		$(this).remove();
 	});
 	$("button.nextStepInstall").click(function(){
 		nextStepInstallCliquedCount = nextStepInstallCliquedCount + 1;
