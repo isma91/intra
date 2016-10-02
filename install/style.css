@@ -167,3 +167,6 @@ a:focus {
 	right: 0%;
 	max-width: 100%;
 }
+button:disabled {
+	background-color: lightgrey;
+}
