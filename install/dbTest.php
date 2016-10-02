@@ -28,9 +28,9 @@ try {
             } else {
                 echo "Error !! The MySQL server denied acces to '" . $_POST["username"] . "', maybe you have write the wrong password ??\n";
             }
-        } elseif ($exception->getCode() === 1049) {
+        } elseif ($exception->getCode() === 1049 || $exception->getCode() === 1102) {
             echo "Error !! Database '" . $_POST["dbname"] . "' doesn't exist in the MySQL server '" . $_POST["host"] . "'\n";
-        } else {    
+        } else {
             echo "Error !! " . $exception->getMessage();
         }
     }
