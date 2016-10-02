@@ -12,7 +12,7 @@
 */
 try {
 	$db = new PDO("mysql:host=" . $_POST["host"] . ";dbname=" . $_POST["dbname"], $_POST["username"], $_POST["password"]);
-	$tableRequest = $bdd->query("SHOW TABLES");
+	$tableRequest = $db->query("SHOW TABLES");
     $tableData = $tableRequest->fetchAll(PDO::FETCH_NUM);
     if (count($tableData) === 0) {
     	echo "The database '" . $_POST["dbname"] . "' is empty !! You can finish the installation now !!\n";
