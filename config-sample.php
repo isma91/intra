@@ -14,10 +14,10 @@
 */
 return array(
     array(
-			'host' => 'localhost',
-			'dbname' => 'intra',
-			'user' => 'root',
-			'password' => '',
+        'host' => 'localhost',
+		'dbname' => 'intra',
+		'user' => 'root',
+		'password' => '',
     ),
-	"install" => false
+    'install' => false
 );
