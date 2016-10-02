@@ -8,6 +8,17 @@ $(document).ready(function(){
 	emailGood = false;
 	nextStepInstallCliqued = false;
 	nextStepInstallCliquedCount = 0;
+	function changeConfirmPassword () {
+		if ($("input#confirmPassword").val() !== $("input#password").val()) {
+			confirmPasswordGood = false;
+			$(this).css({"border-color":"#FF0000"});
+			$("span#spanLabelConfirmPassword").html(" not the same password").css("color", "#FF0000");
+		} else {
+			confirmPasswordGood = true;
+			$(this).css({"border-color":"#007B00"});
+			$("span#spanLabelConfirmPassword").html(" same password").css("color", "#007B00");
+		}
+	}
 	$("button.toggleInstall").click(function(){
 		$("div.formInstall").fadeToggle("slow");
 		$("button.toggleInstall").remove();
@@ -26,6 +37,7 @@ $(document).ready(function(){
 		$("div.dbInstall").fadeIn("slow");
 	});
 	$("input#password").bind("change paste keyup", function() {
+		changeConfirmPassword();
 		var score, password;
 		score = 0;
 		password = $(this).val();
@@ -70,15 +82,7 @@ $(document).ready(function(){
 		}
 	});
 	$("input#confirmPassword").bind('change paste keyup', function() {
-		if ($(this).val() !== $("input#password").val()) {
-			confirmPasswordGood = false;
-			$(this).css({"border-color":"#FF0000"});
-			$("span#spanLabelConfirmPassword").html(" not the same password").css("color", "#FF0000");
-		} else {
-			confirmPasswordGood = true;
-			$(this).css({"border-color":"#007B00"});
-			$("span#spanLabelConfirmPassword").html(" same password").css("color", "#007B00");
-		}
+		changeConfirmPassword();
 	});
 	$("input#email").bind('change paste keyup', function() {
 		var regexEmail;
