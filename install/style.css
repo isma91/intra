@@ -41,7 +41,7 @@ div.inputInstall {
 	overflow: hidden;
 	width: 1em;
 	height: 1em;
-	border-radius: 50%;
+	left: 50%;
 	margin: 72px auto;
 	position: relative;
 	-webkit-transform: translateZ(0);
