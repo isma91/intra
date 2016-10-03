@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (!file_exists('config.php')) {
+$configFile = include('config.php');
+if (empty($configFile) || $configFile['install'] === false) {
     header('Location: ./install/install.php');
 }
 require 'autoload.php';
