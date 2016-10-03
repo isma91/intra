@@ -150,26 +150,29 @@ $(document).ready(function(){
 		}
 	});
 	$("button#finishInstall").click(function() {
+		$("div.formInstall").css("display", "none");
+		$("div.dbInstall").css("display", "none");
+		$("div.loader").css("display", "inline-block");
+		$("div.install").html("Completing the Installation...");
 		$.post("configCreate.php", {host:  checkDbHost, username: checkDbUsername, password: checkDbPassword, dbname: checkDbName}, function (data) {
 			if (data !== 0) {
-				Materialize.toast('<p class="alert-success">Config file created !!<p>', 3000, 'rounded alert-success');
+				Materialize.toast('<p class="alert-success">Config file created !!<p>', 1500, 'rounded alert-success');
 			} else {
-				Materialize.toast('<p class="alert-failed">Error when creating the config file !!<p>', 3000, 'rounded alert-failed');
+				Materialize.toast('<p class="alert-failed">Error when creating the config file !!<p>', 1500, 'rounded alert-failed');
 			}
 		});
-		$.post( "dbTableInstall.php", {host:  $("input#host").val(), username: $("input#username").val(), dbPassword: $("input#dbPassword").val(), dbname: $("input#dbname").val(), nickname: $("input#nickname").val(), firstname: $("input#firstname").val(), lastname: $("input#lastname").val(), email: $("input#email").val(), password: $("input#password").val()}, function (data) {
-			$("div.formInstall").css("display", "none");
-			$("div.dbInstall").css("display", "none");
-			$("div.loader").css("display", "inline");
-			$("div.install").html("Completing the Installation...");
-			if (data === "true") {
+		$.post("dbTableInstall.php", {host:  $("input#host").val(), username: $("input#username").val(), dbPassword: $("input#dbPassword").val(), dbname: $("input#dbname").val(), nickname: $("input#nickname").val(), firstname: $("input#firstname").val(), lastname: $("input#lastname").val(), email: $("input#email").val(), password: $("input#password").val()}, function (data) {
+			data = JSON.parse(data);
+			if (data.error.length === 0) {
+				Materialize.toast('<p class="alert-success">Your intra is ready to go !!<p>', 1500, 'rounded alert-success');
 				$("div.loader").css("display", "none");
-				Materialize.toast('<p class="alert-success">Your intra is ready to go !!<p>', 3000, 'rounded alert-success');
 				$("div.install").html("Done !!");
-				document.location.href = './../';
+				setInterval(function() {
+					document.location.href = './../';
+				}, 1500);
 			} else {
 				$("div.loader").css("display", "none");
-				Materialize.toast('<p class="alert-failed">All tables have not been created in the database !! Try Again !!<p>', 3000, 'rounded alert-failed');
+				Materialize.toast('<p class="alert-failed">All tables or your admin account have not been created in the database !! Try Again !!<p>', 3000, 'rounded alert-failed');
 				$("div.install").html("Restart the installation and check if the 'install' folder is in the root of the project");
 			}
 		});
