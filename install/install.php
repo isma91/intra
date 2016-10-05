@@ -1,6 +1,9 @@
 <?php
-if (file_exists('./../config.php')) {
-	header('Location: ./../');
+$configFile = include('config.php');
+if (!empty($configFile) || $configFile['install'] === true) {
+	header('Location: ./install/install.php');
+} else {
+	header('Location: ../');
 }
 ?>
 <!DOCTYPE html>
