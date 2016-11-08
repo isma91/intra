@@ -14,12 +14,10 @@
 * @license  https://opensource.org/licenses/mit-license.php MIT License
 */
 return array(
-    array(
-        'host' => 'localhost',
-		'dbname' => 'intra',
-		'user' => 'root',
-		'password' => '',
-    ),
+    'host' => 'localhost',
+	'dbname' => 'intra',
+	'user' => 'root',
+	'password' => '',
     'install' => false,
     'maintenance' => false
 );
