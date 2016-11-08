@@ -26,13 +26,11 @@ $config = "<?php
 * @license  https://opensource.org/licenses/mit-license.php MIT License
 */
 return array(
-    array(
-        'host' => '" . $_POST["host"] ."',
-		'dbname' => '" . $_POST["dbname"] ."',
-		'user' => '" . $_POST["username"] ."',
-		'password' => '" . $_POST["password"] ."',
-    ),
-	'install' => true,
+    'host' => '" . $_POST["host"] ."',
+	'dbname' => '" . $_POST["dbname"] ."',
+	'user' => '" . $_POST["username"] ."',
+	'password' => '" . $_POST["password"] ."',
+    'install' => true,
 	'maintenance' => false
 );";
 $config_file = file_put_contents("../config.php", $config);
