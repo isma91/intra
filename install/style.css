@@ -3,7 +3,7 @@
 	src: url('../media/font/Abel-Regular.ttf');
 }
 body {
-	font-family: "Abel-Regular";
+	font-family: "Abel-Regular", sans-serif;
 }
 div.install,
 div.formInstall h2,
@@ -16,7 +16,7 @@ div.dbInstall h2,
 .title {
     text-align: center;
     margin: auto;
-    font-family: 'Abel-Regular';
+    font-family: "Abel-Regular", sans-serif;
     font-size: 2em;
 }
 button.nextStepInstall,
